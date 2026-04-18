@@ -40,7 +40,7 @@ const CustomCursor = () => {
       lastX.current = e.clientX;
       lastT.current = now;
       // Tilt based on horizontal velocity, clamped (more exaggerated)
-      const t = Math.max(-45, Math.min(45, vx * 16));
+      const t = Math.max(-55, Math.min(55, vx * 24));
       targetTilt.current = t;
     };
     const onDown = () => setPressed(true);
