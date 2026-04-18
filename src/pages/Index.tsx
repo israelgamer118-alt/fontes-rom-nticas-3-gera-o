@@ -1,15 +1,7 @@
 import { ArrowUpRight } from "lucide-react";
 
-type Source = {
-  title: string;
-  outlet: string;
-  url: string;
-};
-
-type Section = {
-  title: string;
-  sources: Source[];
-};
+type Source = { title: string; outlet: string; url: string };
+type Section = { title: string; sources: Source[] };
 
 const sections: Section[] = [
   {
@@ -48,80 +40,147 @@ const sections: Section[] = [
 ];
 
 const authors = ["Arthur", "Christyan", "Vitor", "Isabelly", "Bruno", "Kauan"];
+const totalSources = sections.reduce((n, s) => n + s.sources.length, 0);
 
 const Index = () => {
+  let counter = 0;
+
   return (
-    <main className="min-h-screen bg-background text-foreground">
-      <div className="mx-auto max-w-5xl px-6 py-20 sm:px-10 sm:py-28">
-        {/* Header */}
-        <header className="fade-up">
-          <p className="text-xs font-medium uppercase tracking-[0.2em] text-ink/50">
-            Literatura Brasileira
-          </p>
-          <h1 className="mt-6 font-display text-5xl leading-[1.05] sm:text-7xl md:text-8xl">
-            Fontes
-            <br />
-            3ª Geração Romântica
-          </h1>
-          <p className="mt-8 max-w-md text-sm text-ink/60">
-            {authors.join(", ")}
-          </p>
-        </header>
+    <main className="min-h-screen bg-background text-ink">
+      {/* Top bar */}
+      <div className="border-b border-ink/10">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 sm:px-10">
+          <span className="font-mono text-xs uppercase tracking-wider">
+            ⏤ 3GR / {new Date().getFullYear()}
+          </span>
+          <span className="font-mono text-xs uppercase tracking-wider text-ink/60">
+            {totalSources.toString().padStart(2, "0")} fontes
+          </span>
+        </div>
+      </div>
+
+      <div className="mx-auto max-w-6xl px-6 sm:px-10">
+        {/* Hero */}
+        <section className="fade-up grid gap-10 py-20 sm:py-32 md:grid-cols-12">
+          <div className="md:col-span-8">
+            <div className="chip">
+              <span className="dot" />
+              Literatura Brasileira · Romantismo
+            </div>
+            <h1 className="mt-8 font-display text-[clamp(2.75rem,9vw,7.5rem)] leading-[0.95]">
+              Fontes
+              <br />
+              <span className="text-ink/40">3ª Geração</span>
+              <br />
+              Romântica
+            </h1>
+          </div>
+          <div className="flex flex-col justify-end md:col-span-4">
+            <p className="text-sm text-ink/60">
+              Coletânea curada de referências sobre a Terceira Geração do
+              Romantismo brasileiro e o Condoreirismo.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-2">
+              {authors.map((a) => (
+                <span key={a} className="chip">{a}</span>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Marquee divider */}
+        <div className="overflow-hidden border-y border-ink/10 py-4">
+          <div className="marquee-track flex w-max gap-12 font-display text-3xl text-ink/30 sm:text-5xl">
+            {Array.from({ length: 2 }).map((_, i) => (
+              <div key={i} className="flex shrink-0 gap-12">
+                <span>Castro Alves</span><span>✦</span>
+                <span>Tobias Barreto</span><span>✦</span>
+                <span>Condoreirismo</span><span>✦</span>
+                <span>Liberdade</span><span>✦</span>
+                <span>O Navio Negreiro</span><span>✦</span>
+                <span>Espumas Flutuantes</span><span>✦</span>
+              </div>
+            ))}
+          </div>
+        </div>
 
         {/* Sections */}
-        <div className="mt-24 space-y-20">
+        <div className="space-y-24 py-24">
           {sections.map((section, sIdx) => (
             <section
               key={section.title}
-              className="fade-up"
-              style={{ animationDelay: `${100 * (sIdx + 1)}ms` }}
+              className="fade-up grid gap-8 md:grid-cols-12"
+              style={{ animationDelay: `${80 * (sIdx + 1)}ms` }}
             >
-              <div className="mb-6 flex items-baseline justify-between gap-4">
-                <h2 className="font-display text-2xl sm:text-3xl">
-                  {section.title}
-                </h2>
-                <span className="text-xs font-medium tabular-nums text-ink/40">
-                  {String(sIdx + 1).padStart(2, "0")} / {String(sections.length).padStart(2, "0")}
-                </span>
+              <div className="md:col-span-4">
+                <div className="md:sticky md:top-8">
+                  <span className="font-mono text-xs uppercase tracking-wider text-ink/50">
+                    {String(sIdx + 1).padStart(2, "0")} — Seção
+                  </span>
+                  <h2 className="mt-3 font-display text-3xl sm:text-4xl">
+                    {section.title}
+                  </h2>
+                </div>
               </div>
 
-              <ul className="grid gap-3 sm:grid-cols-2">
-                {section.sources.map((src) => (
-                  <li key={src.url}>
-                    <a
-                      href={src.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="source-card group flex h-full items-start justify-between gap-4 rounded-xl border border-ink/15 bg-card/50 p-5"
-                    >
-                      <div className="min-w-0 flex-1">
-                        <p className="text-[11px] font-medium uppercase tracking-[0.15em] text-ink/50">
-                          {src.outlet}
-                        </p>
-                        <h3 className="mt-2 text-base font-medium leading-snug text-ink">
-                          {src.title}
-                        </h3>
-                      </div>
-                      <ArrowUpRight
-                        strokeWidth={1.5}
-                        className="arrow mt-0.5 h-5 w-5 shrink-0 text-ink/60"
-                      />
-                    </a>
-                  </li>
-                ))}
+              <ul className="grid gap-3 md:col-span-8">
+                {section.sources.map((src) => {
+                  counter += 1;
+                  const num = counter;
+                  return (
+                    <li key={src.url}>
+                      <a
+                        href={src.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="source-card group flex items-center justify-between gap-6 rounded-2xl border border-ink/15 bg-card/40 p-5 sm:p-6"
+                      >
+                        <div className="flex min-w-0 items-center gap-5 sm:gap-6">
+                          <span className="meta font-mono text-xs text-ink/40">
+                            {String(num).padStart(2, "0")}
+                          </span>
+                          <div className="min-w-0">
+                            <p className="meta font-mono text-[11px] uppercase tracking-wider text-ink/50">
+                              {src.outlet}
+                            </p>
+                            <h3 className="mt-1 truncate text-lg font-medium tracking-tight sm:text-xl">
+                              {src.title}
+                            </h3>
+                          </div>
+                        </div>
+                        <div className="arrow-wrap flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-current/30">
+                          <ArrowUpRight strokeWidth={1.75} className="arrow h-4 w-4" />
+                          <ArrowUpRight strokeWidth={1.75} className="arrow-ghost h-4 w-4 m-auto" />
+                        </div>
+                      </a>
+                    </li>
+                  );
+                })}
               </ul>
             </section>
           ))}
         </div>
 
         {/* Footer */}
-        <footer className="mt-28 flex flex-col gap-2 border-t border-ink/15 pt-8 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-sm text-ink/60">
-            {authors.join(", ")}
-          </p>
-          <p className="text-xs uppercase tracking-[0.15em] text-ink/40">
-            Trabalho de Literatura · {new Date().getFullYear()}
-          </p>
+        <footer className="border-t border-ink/10 py-12">
+          <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="font-mono text-xs uppercase tracking-wider text-ink/50">
+                Autores
+              </p>
+              <p className="mt-3 font-display text-3xl sm:text-4xl">
+                {authors.join(", ")}
+              </p>
+            </div>
+            <div className="text-right">
+              <p className="font-mono text-xs uppercase tracking-wider text-ink/50">
+                Trabalho de Literatura
+              </p>
+              <p className="mt-3 font-mono text-sm">
+                © {new Date().getFullYear()}
+              </p>
+            </div>
+          </div>
         </footer>
       </div>
     </main>
