@@ -50,7 +50,7 @@ const Index = () => {
     <main className="min-h-screen bg-background text-ink">
       <div className="mx-auto max-w-6xl px-5 sm:px-10">
         {/* Hero */}
-        <section className="fade-up grid gap-8 py-14 sm:gap-10 sm:py-24 md:grid-cols-12 md:py-32">
+        <section className="fade-up grid gap-8 pt-6 pb-14 sm:gap-10 sm:pt-10 sm:pb-24 md:grid-cols-12 md:pt-14 md:pb-32">
           <div className="md:col-span-8">
             <div className="chip">
               <span className="dot" />
