@@ -126,6 +126,12 @@ All colors MUST be HSL.
 }
 
 @layer utilities {
+  /* Custom cursor: hide native cursor on fine-pointer devices */
+  html.custom-cursor-active,
+  html.custom-cursor-active * {
+    cursor: none !important;
+  }
+
   .source-card {
     transition: all 400ms cubic-bezier(0.16, 1, 0.3, 1);
   }
