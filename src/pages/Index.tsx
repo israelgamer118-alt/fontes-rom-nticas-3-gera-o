@@ -1,4 +1,5 @@
 import { ArrowUpRight } from "lucide-react";
+import DraggableMarquee from "@/components/DraggableMarquee";
 
 type Source = { title: string; outlet: string; url: string };
 type Section = { title: string; sources: Source[] };
@@ -47,27 +48,15 @@ const Index = () => {
 
   return (
     <main className="min-h-screen bg-background text-ink">
-      {/* Top bar */}
-      <div className="border-b border-ink/10">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 sm:px-10">
-          <span className="font-mono text-xs uppercase tracking-wider">
-            ⏤ 3GR / {new Date().getFullYear()}
-          </span>
-          <span className="font-mono text-xs uppercase tracking-wider text-ink/60">
-            {totalSources.toString().padStart(2, "0")} fontes
-          </span>
-        </div>
-      </div>
-
-      <div className="mx-auto max-w-6xl px-6 sm:px-10">
+      <div className="mx-auto max-w-6xl px-5 sm:px-10">
         {/* Hero */}
-        <section className="fade-up grid gap-10 py-20 sm:py-32 md:grid-cols-12">
+        <section className="fade-up grid gap-8 py-14 sm:gap-10 sm:py-24 md:grid-cols-12 md:py-32">
           <div className="md:col-span-8">
             <div className="chip">
               <span className="dot" />
               Literatura Brasileira · Romantismo
             </div>
-            <h1 className="mt-8 font-display text-[clamp(2.75rem,9vw,7.5rem)] leading-[0.95]">
+            <h1 className="mt-6 font-display text-[clamp(2.5rem,11vw,7.5rem)] leading-[0.95] sm:mt-8">
               Fontes
               <br />
               <span className="text-ink/40">3ª Geração</span>
@@ -80,7 +69,7 @@ const Index = () => {
               Coletânea curada de referências sobre a Terceira Geração do
               Romantismo brasileiro e o Condoreirismo.
             </p>
-            <div className="mt-6 flex flex-wrap gap-2">
+            <div className="mt-5 flex flex-wrap gap-2 sm:mt-6">
               {authors.map((a) => (
                 <span key={a} className="chip">{a}</span>
               ))}
@@ -89,20 +78,16 @@ const Index = () => {
         </section>
 
         {/* Marquee divider */}
-        <div className="overflow-hidden border-y border-ink/10 py-4">
-          <div className="marquee-track flex w-max gap-12 font-display text-3xl text-ink/30 sm:text-5xl">
-            {Array.from({ length: 2 }).map((_, i) => (
-              <div key={i} className="flex shrink-0 gap-12">
-                <span>Castro Alves</span><span>✦</span>
-                <span>Tobias Barreto</span><span>✦</span>
-                <span>Condoreirismo</span><span>✦</span>
-                <span>Liberdade</span><span>✦</span>
-                <span>O Navio Negreiro</span><span>✦</span>
-                <span>Espumas Flutuantes</span><span>✦</span>
-              </div>
-            ))}
-          </div>
-        </div>
+        <DraggableMarquee
+          items={[
+            "Castro Alves", "✦",
+            "Tobias Barreto", "✦",
+            "Condoreirismo", "✦",
+            "Liberdade", "✦",
+            "O Navio Negreiro", "✦",
+            "Espumas Flutuantes", "✦",
+          ]}
+        />
 
         {/* Sections */}
         <div className="space-y-24 py-24">
