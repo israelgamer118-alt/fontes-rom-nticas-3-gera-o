@@ -11,7 +11,7 @@ const sections: Section[] = [
       { outlet: "Brasil Escola", title: "Terceira Geração Romântica", url: "https://brasilescola.uol.com.br/literatura/terceira-geracao-do-romantismo.htm" },
       { outlet: "Toda Matéria", title: "Condoreirismo e Características", url: "https://www.todamateria.com.br/o-condoreirismo/" },
       { outlet: "Português.com.br", title: "Poesia Condoreira e Liberdade", url: "https://www.portugues.com.br/literatura/condoreirismo.html" },
-      { outlet: "Toda Matéria", title: "Terceira Geração — Resumo de Autores", url: "https://www.todamateria.com.br/terceira-geracao-romantica/" },
+      { outlet: "Toda Matéria", title: "Terceira Geração - Resumo de Autores", url: "https://www.todamateria.com.br/terceira-geracao-romantica/" },
       { outlet: "InfoEscola", title: "Evolução do Romantismo no Brasil", url: "https://www.infoescola.com/literatura/romantismo-no-brasil/" },
     ],
   },
@@ -100,7 +100,7 @@ const Index = () => {
               <div className="md:col-span-4">
                 <div className="md:sticky md:top-8">
                   <span className="font-mono text-[11px] uppercase tracking-wider text-ink/50 sm:text-xs">
-                    {String(sIdx + 1).padStart(2, "0")} — Seção
+                    {String(sIdx + 1).padStart(2, "0")} - Seção
                   </span>
                   <h2 className="mt-2 font-display text-2xl sm:mt-3 sm:text-4xl">
                     {section.title}
