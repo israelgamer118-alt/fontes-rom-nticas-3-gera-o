@@ -8,11 +8,18 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Cream paper #fbecc5 */
+    --background: 41 82% 88%;
+    --foreground: 0 0% 8%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    /* Slightly deeper cream for cards */
+    --card: 40 70% 92%;
+    --card-foreground: 0 0% 8%;
+
+    /* Sepia accents */
+    --sepia: 28 45% 35%;
+    --sepia-soft: 35 55% 78%;
+    --ink: 0 0% 8%;
 
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
@@ -101,5 +108,66 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.05rem;
+    background-image:
+      radial-gradient(hsl(var(--sepia) / 0.05) 1px, transparent 1px),
+      radial-gradient(hsl(var(--sepia) / 0.04) 1px, transparent 1px);
+    background-size: 28px 28px, 56px 56px;
+    background-position: 0 0, 14px 14px;
+  }
+
+  h1, h2, h3, .font-display {
+    font-family: 'Playfair Display', 'Times New Roman', serif;
+    letter-spacing: -0.01em;
+  }
+
+  .font-sans-ui {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+}
+
+@layer utilities {
+  .ornament-rule {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: hsl(var(--sepia));
+  }
+  .ornament-rule::before,
+  .ornament-rule::after {
+    content: '';
+    flex: 1;
+    border-top: 1px solid hsl(var(--sepia) / 0.5);
+    box-shadow: 0 3px 0 -2px hsl(var(--sepia) / 0.4);
+  }
+
+  .source-card {
+    position: relative;
+    transition: transform 300ms ease, box-shadow 300ms ease, background-color 300ms ease;
+  }
+  .source-card:hover {
+    transform: translateY(-3px);
+    background-color: hsl(var(--sepia-soft) / 0.55);
+    box-shadow: 0 12px 24px -16px hsl(var(--ink) / 0.35);
+  }
+  .source-card .underline-anim {
+    background-image: linear-gradient(hsl(var(--ink)), hsl(var(--ink)));
+    background-size: 0% 1px;
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    transition: background-size 350ms ease;
+    padding-bottom: 2px;
+  }
+  .source-card:hover .underline-anim {
+    background-size: 100% 1px;
+  }
+
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up {
+    animation: fade-up 700ms ease both;
   }
 }
