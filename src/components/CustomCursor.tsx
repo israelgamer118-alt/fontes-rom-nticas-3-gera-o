@@ -39,8 +39,8 @@ const CustomCursor = () => {
       const vx = (e.clientX - lastX.current) / dt; // px per ms
       lastX.current = e.clientX;
       lastT.current = now;
-      // Tilt based on horizontal velocity, clamped
-      const t = Math.max(-18, Math.min(18, vx * 6));
+      // Tilt based on horizontal velocity, clamped (more exaggerated)
+      const t = Math.max(-45, Math.min(45, vx * 16));
       targetTilt.current = t;
     };
     const onDown = () => setPressed(true);
@@ -56,8 +56,8 @@ const CustomCursor = () => {
       pos.current.x += (target.current.x - pos.current.x) * 0.35;
       pos.current.y += (target.current.y - pos.current.y) * 0.35;
       // Tilt easing + decay back to 0
-      tilt.current += (targetTilt.current - tilt.current) * 0.15;
-      targetTilt.current *= 0.85;
+      tilt.current += (targetTilt.current - tilt.current) * 0.2;
+      targetTilt.current *= 0.9;
 
       if (ref.current) {
         const tipOffsetX = SIZE * TIP_X_RATIO;
