@@ -40,7 +40,7 @@ const sections: Section[] = [
   },
 ];
 
-const authors = ["Arthur", "Christyan", "Vitor", "Isabelly", "Bruno", "Kauan"];
+const authors = ["Arthur", "Christyan", "Vitor", "Isabelly", "Bruno", "Cauã"];
 const totalSources = sections.reduce((n, s) => n + s.sources.length, 0);
 
 const Index = () => {
