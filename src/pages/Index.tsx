@@ -90,19 +90,19 @@ const Index = () => {
         />
 
         {/* Sections */}
-        <div className="space-y-24 py-24">
+        <div className="space-y-16 py-16 sm:space-y-24 sm:py-24">
           {sections.map((section, sIdx) => (
             <section
               key={section.title}
-              className="fade-up grid gap-8 md:grid-cols-12"
+              className="fade-up grid gap-6 md:grid-cols-12 md:gap-8"
               style={{ animationDelay: `${80 * (sIdx + 1)}ms` }}
             >
               <div className="md:col-span-4">
                 <div className="md:sticky md:top-8">
-                  <span className="font-mono text-xs uppercase tracking-wider text-ink/50">
+                  <span className="font-mono text-[11px] uppercase tracking-wider text-ink/50 sm:text-xs">
                     {String(sIdx + 1).padStart(2, "0")} — Seção
                   </span>
-                  <h2 className="mt-3 font-display text-3xl sm:text-4xl">
+                  <h2 className="mt-2 font-display text-2xl sm:mt-3 sm:text-4xl">
                     {section.title}
                   </h2>
                 </div>
@@ -118,22 +118,22 @@ const Index = () => {
                         href={src.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="source-card group flex items-center justify-between gap-6 rounded-2xl border border-ink/15 bg-card/40 p-5 sm:p-6"
+                        className="source-card group flex items-center justify-between gap-3 rounded-xl border border-ink/15 bg-card/40 p-4 sm:gap-6 sm:rounded-2xl sm:p-6"
                       >
-                        <div className="flex min-w-0 items-center gap-5 sm:gap-6">
-                          <span className="meta font-mono text-xs text-ink/40">
+                        <div className="flex min-w-0 items-center gap-3 sm:gap-6">
+                          <span className="meta font-mono text-[11px] text-ink/40 sm:text-xs">
                             {String(num).padStart(2, "0")}
                           </span>
                           <div className="min-w-0">
-                            <p className="meta font-mono text-[11px] uppercase tracking-wider text-ink/50">
+                            <p className="meta font-mono text-[10px] uppercase tracking-wider text-ink/50 sm:text-[11px]">
                               {src.outlet}
                             </p>
-                            <h3 className="mt-1 truncate text-lg font-medium tracking-tight sm:text-xl">
+                            <h3 className="mt-1 truncate text-base font-medium tracking-tight sm:text-xl">
                               {src.title}
                             </h3>
                           </div>
                         </div>
-                        <div className="arrow-wrap flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-current/30">
+                        <div className="arrow-wrap flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-current/30 sm:h-10 sm:w-10">
                           <ArrowUpRight strokeWidth={1.75} className="arrow h-4 w-4" />
                           <ArrowUpRight strokeWidth={1.75} className="arrow-ghost h-4 w-4 m-auto" />
                         </div>
@@ -147,21 +147,21 @@ const Index = () => {
         </div>
 
         {/* Footer */}
-        <footer className="border-t border-ink/10 py-12">
-          <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+        <footer className="border-t border-ink/10 py-10 sm:py-12">
+          <div className="flex flex-col gap-6 sm:gap-8 md:flex-row md:items-end md:justify-between">
             <div>
-              <p className="font-mono text-xs uppercase tracking-wider text-ink/50">
+              <p className="font-mono text-[11px] uppercase tracking-wider text-ink/50 sm:text-xs">
                 Autores
               </p>
-              <p className="mt-3 font-display text-3xl sm:text-4xl">
+              <p className="mt-2 font-display text-2xl sm:mt-3 sm:text-4xl">
                 {authors.join(", ")}
               </p>
             </div>
-            <div className="text-right">
-              <p className="font-mono text-xs uppercase tracking-wider text-ink/50">
+            <div className="md:text-right">
+              <p className="font-mono text-[11px] uppercase tracking-wider text-ink/50 sm:text-xs">
                 Trabalho de Literatura
               </p>
-              <p className="mt-3 font-mono text-sm">
+              <p className="mt-2 font-mono text-sm sm:mt-3">
                 © {new Date().getFullYear()}
               </p>
             </div>
